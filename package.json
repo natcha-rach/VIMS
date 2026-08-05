@@ -1,11 +1,16 @@
 {
-  "name":"vims-enterprise",
-  "version":"1.0.0-alpha",
-  "private":true,
-  "type":"module",
-  "scripts":{
-    "dev":"tsx watch src/server.ts",
-    "build":"tsc",
-    "start":"node dist/server.js"
+  "name": "vims-enterprise",
+  "version": "1.0.0-alpha",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "test": "vitest",
+    "build": "tsc",
+    "start": "node dist/server.js"
+  },
+  "devDependencies": {
+    "tsx": "^4.23.8",
+    "vitest": "^4.1.10"
   }
 }
