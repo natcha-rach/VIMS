@@ -38,6 +38,23 @@ export class AuthController {
       next(error);
     }
   }
+
+  async me(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    return res.status(200).json({
+      success: true,
+      message: "Get profile success",
+      data: req.user,
+    });
+
+  } catch (error) {
+    next(error);
+  }
+}
 }
 
 export const authController = new AuthController();
