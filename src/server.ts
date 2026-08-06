@@ -1,3 +1,7 @@
-import {createApp} from './app.js';
-const app=createApp();
-console.log(app.health());
+import app from "./app";
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`🚀 VIMS API running on http://localhost:${PORT}`);
+});
