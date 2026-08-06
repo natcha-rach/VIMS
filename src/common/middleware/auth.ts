@@ -45,6 +45,7 @@ export function authMiddleware(
       userId: decoded.userId as string,
       email: decoded.email as string,
       username: decoded.username as string,
+      role: decoded.role as string,
     };
 
 

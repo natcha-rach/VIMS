@@ -7,19 +7,75 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// ==========================================
+// User Role Definition
+// ==========================================
+//
+// กำหนดระดับสิทธิ์ของ User
+//
+// SUPER_ADMIN
+// - เจ้าของระบบ
+// - Full Access
+//
+// ADMIN
+// - จัดการระบบ
+//
+// MANAGER
+// - จัดการ Warehouse / Inventory
+//
+// STAFF
+// - ใช้งาน Operation
+//
+// VIEWER
+// - ดูข้อมูลอย่างเดียว
+//
+
+enum Role {
+  SUPER_ADMIN
+  ADMIN
+  MANAGER
+  STAFF
+  VIEWER
+}
+
 model User {
+  // Primary Key
   id String @id @default(uuid())
 
-  email    String @unique
+  // Authentication
+
+  email String @unique
+
   username String @unique
+
+  // Password ที่ผ่าน bcrypt hash แล้ว
 
   passwordHash String
 
+  // Profile
+
   firstName String?
-  lastName  String?
+
+  lastName String?
+
+  // Authorization
+
+  // Role ของ User
+  //
+  // Default:
+  // STAFF
+  //
+  // เพราะ User ใหม่ไม่ควรได้สิทธิ์สูง
+
+  role Role @default(STAFF)
+
+  // Account Status
 
   isActive Boolean @default(true)
 
+  // Audit Timestamp
+
   createdAt DateTime @default(now())
+
   updatedAt DateTime @updatedAt
 }
